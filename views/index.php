@@ -38,29 +38,34 @@
         }
     </style>
 </head>
+
 <body class="bg-gray-800 flex items-center justify-center h-screen relative">
     <div class="text-gray-100 opacity-5">
         <div id="loading" class="classic-2 self-center"></div>
     </div>
-    <div class="">
+    <div id="main" class="hidden">
         <div id="profit-content"></div>
-        <div id="status-indicator"
-        class="flex justify-center">
-        <ul class="bg-gray-700 rounded-lg">
-            <li class="m-1 p-2"><svg id="chevron-up" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-100"
-                    viewBox="0 0 24 24" fill="currentColor" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" stroke="currentColor">
-                    <path fill="currentColor" />
-                </svg></li>
-            <li class="m-1 p-2 text-gray-100 text-6xl"><div id="percentage-region"></div></li>
-            <li class="m-1 p-2"><svg id="chevron-down" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-100" 
-                    viewBox="0 0 24 24" >
-                    <path fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                </svg></li>
-        </ul>
-    </div>
+        <div id="status-indicator" class="flex justify-center hidden">
+            <ul class="bg-gray-700 rounded-lg">
+                <li class="m-1 p-2"><svg id="chevron-up" xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6 text-gray-100" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"
+                            stroke="currentColor">
+                            <path fill="currentColor" />
+                    </svg></li>
+                <li class="m-1 p-2 text-gray-100 text-6xl">
+                    <div id="percentage-region"></div>
+                </li>
+                <li class="m-1 p-2"><svg id="chevron-down" xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6 text-gray-100" viewBox="0 0 24 24">
+                        <path fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg></li>
+            </ul>
+        </div>
         <ul id="current-data-list"></ul>
     </div>
     <script src="assets/index.js" async defer></script>
 </body>
+
 </html>

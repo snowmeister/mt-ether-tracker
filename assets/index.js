@@ -16,15 +16,47 @@ const CURRENT_ETH = 0.02095682;
 let loading = true;
 let init = false;
 
-const buildProfit = (profit) => {
+const calculatePercentageDifference = (currentValue, direction) =>{
+    if(direction === 'up'){
+       const increase = currentValue - CURRENT_GBP_INVESTMENT;
+       return (increase / CURRENT_GBP_INVESTMENT) * 100
+    }else{
+        const decrease = CURRENT_GBP_INVESTMENT - currentValue;
+        return (decrease / CURRENT_GBP_INVESTMENT) * 100
+    }
 
-    console.log('profit', profit)
-    const dblDifference = profit - CURRENT_GBP_INVESTMENT;
-    console.log('dblDifference', dblDifference)
+}
+
+const buildProfit = (currentValue) => {
+    let status = 1;
+    let noStyle = 'color:rgba(255,255,255, 0.6); opacity: 0.1';
+    let upStyle = 'color: green; stroke: green;fill: green';
+    let downStyle = 'color: red; stroke: red;fill: red';
+    let perc = 0;
+    const dblDifference = currentValue - CURRENT_GBP_INVESTMENT;
+
+    // We are in the black...
+    if(dblDifference > 0) {
+        downStyle = noStyle;
+        status = 2;
+        perc = calculatePercentageDifference(currentValue, 'up')
+    }
+
+    // We are in the red...
+    if(dblDifference < 0) {
+        status = 0;
+        upStyle = noStyle;
+        perc = calculatePercentageDifference(currentValue, 'down')
+    }
+
     document.getElementById(
         'profit-content'
-    ).innerHTML = `<div class="text-base  text-7xl sm:text-4xl md:text-7xl lg:text-9xl bg-gray-700 rounded-lg mt-5 p-8 text-center text-gray-400  m-4 shadow ">£${profit}</div>`;
-};
+    ).innerHTML = `<div class="text-base  text-7xl sm:text-4xl md:text-7xl lg:text-9xl bg-gray-700 rounded-lg mt-5 p-8 text-center text-gray-400  m-4 shadow ">£${currentValue}</div>`;
+
+    document.getElementById('chevron-up').setAttribute('style', upStyle)
+    document.getElementById('chevron-down').setAttribute('style', downStyle)
+    document.getElementById('percentage-region').innerHTML = '<strong>'+perc.toFixed(2)+'%</strong';
+}
 
 const buildListItem = (label, value, opacity, boolHuge) => {
     return `<li class="px-2 py-3 text-gray-200  shadow opacity-${opacity} flex flex-wrap content-center}"><div class="w-3/6 p-4 flex-grow opacity-30">${label}:</div> <div class="rounded-lg shadow  p-4 text-gray-400 text-xxl align-right bg-gray-700 mr-2"> ${value}<div></li>`;
@@ -35,9 +67,9 @@ const setUpUI = (currentUSDPrice, currentUSDtoGBPPrice) => {
     const strDollars = parseFloat(currentUSDPrice).toFixed(2).toString();
     buildProfit((currentUSDVALUE / currentUSDtoGBPPrice).toFixed(2));
 
-
-
-
+    /**
+     * Build up the UI Elements HTML
+     */
     let HTML = '';
     HTML += buildListItem('CURRENTLY INVESTED', '£' + CURRENT_GBP_INVESTMENT.toFixed(2));
     HTML += buildListItem('PORTFOLIO ETH', CURRENT_ETH);
@@ -63,6 +95,8 @@ const removeLoader = () => {
     el.parentNode.removeChild(el);
     document.body.classList.remove('flex', 'items-center', 'justify-center', 'h-screen');
     document.body.classList.add('mt-4', 'pt-4');
+    document.getElementById('main').classList.remove('hidden');
+    document.getElementById('status-indicator').classList.remove('hidden');
 };
 
 const addLoader = () => {
@@ -101,11 +135,15 @@ async function getData() {
     // waits until the request completes...
     const response = await fetch('/rate');
     // return the JSON from the response...
+    setTimeout(()=>{
+        getData()
+    },30000);
     return response.json();
 }
 
 // Wait until we have the 'document.ready'...
 if (document.readyState === 'complete' || (document.readyState !== 'loading' && !document.documentElement.doScroll)) {
+    
     addLoader();
     getData()
         .then((response) => {
@@ -113,6 +151,8 @@ if (document.readyState === 'complete' || (document.readyState !== 'loading' && 
             const currentUSDPrice = response.ether.data.priceUsd;
             const currentUSDtoGBPPrice = response.rate.data.rateUsd;
             setUpUI(currentUSDPrice, currentUSDtoGBPPrice);
+
+            
         })
         .catch((err) => {
             console.error(err);
