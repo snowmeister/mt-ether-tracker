@@ -38,66 +38,29 @@
         }
     </style>
 </head>
-
-<body class="bg-gray-800 flex items-center justify-center h-screen">
-
-<!-- l grid-rows-3 m-6 text-base  text-7xl sm:text-4xl md:text-7xl lg:text-9xl bg-gray-700 rounded-lg mt-5 p-8 text-center text-gray-400  m-4 shadow -->
-
-
-    <div id="status-indicator"
-        class="rounded-full text-base bg-gray-700  text-gray-400 shadow w-1/8">
-        <!-- class="rounded-full text-base bg-gray-700  text-gray-400 shadow"> -->
-
-        <ul>
-            <li><svg id="chevron-up" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-100" fill="none"
-                    viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
-                </svg></li>
-            <li>90%</li>
-            <li><svg id="chevron-down" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-100" fill="none"
-                    viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                </svg></li>
-        </ul>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<body class="bg-gray-800 flex items-center justify-center h-screen relative">
     <div class="text-gray-100 opacity-5">
-
         <div id="loading" class="classic-2 self-center"></div>
     </div>
-    <div>
+    <div class="">
         <div id="profit-content"></div>
-        <ul id="current-data-list">
-
+        <div id="status-indicator"
+        class="flex justify-center">
+        <ul class="bg-gray-700 rounded-lg">
+            <li class="m-1 p-2"><svg id="chevron-up" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-100"
+                    viewBox="0 0 24 24" fill="currentColor" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" stroke="currentColor">
+                    <path fill="currentColor" />
+                </svg></li>
+            <li class="m-1 p-2 text-gray-100 text-6xl"><div id="percentage-region"></div></li>
+            <li class="m-1 p-2"><svg id="chevron-down" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-100" 
+                    viewBox="0 0 24 24" >
+                    <path fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg></li>
         </ul>
     </div>
-
-
-
-
-
-
-
-
-
-
+        <ul id="current-data-list"></ul>
+    </div>
     <script src="assets/index.js" async defer></script>
-
 </body>
-
 </html>

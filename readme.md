@@ -9,3 +9,5 @@ A simple webapp to allow tracking of a given amount against a given currency, eg
 **Vanilla JavaScript** - This is a very simple project, that I doubt will be used by anyone but myself, and is pretty much just a little tool that my partner and I can use to easily check our very small investment in [Ethereum](https://ethereum.org/)
 
 **TailwindCSS** - I've recently discovered [TailwindCSS](https://tailwindcss.com/) and I've decided it to use it on a few little personal projects to evaluate it. At some point, I plan to write a blog article about my impressions of it.
+
+You'll need PHP7.1 and APACHE/NGINX to run this..
