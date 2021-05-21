@@ -10,8 +10,8 @@
  * Copyright 2018 - 2021 Mark Kennard AKA Snowmeister
  */
 
-const CURRENT_GBP_INVESTMENT = 60.0;
-const CURRENT_ETH = 0.02095682;
+const CURRENT_GBP_INVESTMENT = 80.0;
+const CURRENT_ETH = 0.03084693;
 
 let loading = true;
 let init = false;
